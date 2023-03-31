@@ -5,10 +5,6 @@
 $this->title = Yii::$app->name;
 ?>
 
-<pre>
-<?php var_dump($posts); ?>
-</pre>
-
 <section class="bg-text-area">
     <div class="container">
         <div class="row">
@@ -39,86 +35,24 @@ $this->title = Yii::$app->name;
                         </div>
                     </div>
                 </div>
+                <?php foreach ($posts as $post): ?>
                 <div class="col-md-3">
                     <div class="single-post">
-                        <img src="img/post-image2.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
+                        <?= \yii\helpers\Html::img("@web/{$post->img}") ?>
+                        <h3><a href="<?= \yii\helpers\Url::to(['post/view', 'id' => $post->id])?>"><?= $post->title ?></a></h3>
+                        <h4>
+                            <span>Category: <span class="author-name">
+                                <a href="<?= \yii\helpers\Url::to(['category/view', 'alias' => $post->category->alias]) ?>">
+                                    <?= $post->category->title ?>
+                                </a>
+                            </span></span>
                         </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
+                        <p><?= $post->excerpt ?></p>
+                        <h4><span><?= Yii::$app->formatter->asDate($post->created_at, 'short') ?></span></h4>
+<!--                        <h4><span>--><?php //= Yii::$app->formatter->asDate($post->created_at) ?><!--</span></h4>-->
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image3.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image4.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image5.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image6.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image7.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image8.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="single-post">
-                        <img src="img/post-image9.jpg" alt="">
-                        <h3><a href="#">Post Title Goes Here.</a></h3>
-                        <h4><span>Posted By: <span class="author-name">Kabbo Liate</span></span>
-                        </h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed dotempor incididunt ut. labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        <h4><span>25 February 2017</span></h4>
-                    </div>
-                </div>
+                <?php endforeach; ?>
             </div>
         </div>
     </div>
